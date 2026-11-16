@@ -1,5 +1,6 @@
 package com.nutrigear.nutrigear_backend.controller;
 
+import com.nutrigear.nutrigear_backend.dto.AuthResponse;
 import com.nutrigear.nutrigear_backend.dto.LoginRequest;
 import com.nutrigear.nutrigear_backend.dto.RegistroRequest;
 import com.nutrigear.nutrigear_backend.dto.UsuarioResponse;
@@ -29,9 +30,9 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(servicio.registrar(datos));
     }
 
-    // POST /api/v1/auth/login -> valida credenciales (200 OK, o 401 si fallan)
+    // POST /api/v1/auth/login -> devuelve el JWT (200 OK, o 401 si las credenciales fallan)
     @PostMapping("/login")
-    public UsuarioResponse login(@Valid @RequestBody LoginRequest datos) {
+    public AuthResponse login(@Valid @RequestBody LoginRequest datos) {
         return servicio.iniciarSesion(datos);
     }
 }

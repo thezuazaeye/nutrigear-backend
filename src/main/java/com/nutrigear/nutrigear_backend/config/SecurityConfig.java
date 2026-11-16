@@ -50,6 +50,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Públicas: registro/login, ver el catálogo y enviar un mensaje de contacto
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        // Documentación Swagger (pública para poder probar la API)
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/productos/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/contacto").permitAll()
                         // Solo admin o vendedor: crear/editar/eliminar productos y leer los mensajes
